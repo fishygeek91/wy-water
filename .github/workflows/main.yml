@@ -51,27 +51,12 @@ jobs:
   check:
     name: Checking Required Reviewers
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
 
-  steps:
-    - uses: Automattic/action-required-review@v2
-      with:
-        requirements: |
-          - paths: unmatched
-            teams:
-             - @trevoryager-callaway
-
-publish:
-  if: github.ref == 'refs/heads/main' && ${{ success() }}
-  needs: build
-  runs-on: ubuntu-latest
-  # Fresh checkout to protect from injection during the previous build step (like prepack)
-  steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: Publish
-      # VERY IMPORTANT NOT TO RUN SCRIPTS TO PROTECT FROM MALICIOUS PACKAGES
-      run: |
-        echo Maybe Success!
+    if: github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name && github.ref == 'refs/heads/main' && ${{ success() }}
+    steps:
+      - uses: CHECK REVIEWS
+        with:
+          requirements: |
+            - paths: unmatched
+              teams:
+              - @trevoryager-callaway
