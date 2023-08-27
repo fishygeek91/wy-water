@@ -2,7 +2,7 @@ import { Value, DateValueMap, DailyValue, DailyValuesMap, CurrentValue, CurrentV
 const USGS_API_BASE = "http://waterservices.usgs.gov/nwis/";
 
 /**
- * Fetch river flow data from a specific endpoint using fetch.
+ * Fetch river flow data from a specific endpoint using fetch
  *
  * @param {string} endpoint - The specific endpoint after the base URL.
  * @returns {Promise} - A promise resolving with the fetched data or rejecting with an error.
