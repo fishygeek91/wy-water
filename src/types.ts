@@ -1,4 +1,4 @@
-// Reusable types
+// Misc
 export type Value = {
     value: number | null;
     unit: string | null;
