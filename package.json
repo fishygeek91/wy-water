@@ -1,9 +1,10 @@
 {
   "name": "wy-water",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "devDependencies": {
     "typescript": "^5.1.6"
   },
   "type": "module",
-  "types": "./src/types.ts"
+  "types": "./src/types.ts",
+  "main": "./src/index.ts"
 }
