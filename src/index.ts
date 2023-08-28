@@ -17,12 +17,7 @@ async function getWyomingSites() {
 
   const sitesData: CurrentValuesMap = {};
 
-  let count = 0;
-  const maxIterations = 3;
   responseJson.value.timeSeries.forEach((element: any) => {
-
-    if (count >= maxIterations) return;
-    count++;
 
     const siteName = element.sourceInfo.siteName;
     const siteCode = element.sourceInfo.siteCode[0].value;
@@ -71,20 +66,6 @@ async function getWyomingSites() {
 
   return sitesData;
 }
-
-// function getDailyRiverMetrics(siteCode, period) {
-//   return fetch(`${USGS_API_BASE}dv/?site=${siteCode}&period=${period}&format=json`)
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-//       return response.json();
-//     })
-//     .catch((error) => {
-//       console.error(`Failed to fetch data: ${error.message}`);
-//       throw error;
-//     });
-// }
 
 function getDailyRiverMetrics(siteCode: string, period: string) {
   return fetch(`${USGS_API_BASE}dv/?site=${siteCode}&period=${period}&format=json`)
