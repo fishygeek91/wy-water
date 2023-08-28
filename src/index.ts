@@ -1,5 +1,5 @@
 import { Value, DateValueMap, DailyValue, DailyValuesMap, CurrentValue, CurrentValuesMap, InstantaneousMetrics, InstantaneousValueMap, InstantaneousValuesMap } from "./types";
-const USGS_API_BASE = "http://waterservices.usgs.gov/nwis/";
+const USGS_API_BASE = "https://waterservices.usgs.gov/nwis/";
 
 /**
  * Fetch river flow data from a specific endpoint using fetch
