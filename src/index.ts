@@ -141,6 +141,14 @@ function getDailyRiverMetrics(siteCode: string, period: string) {
             };
           }
         });
+
+        // Sorting the dates:
+        const sortedDates = Object.keys(dailyMetrics[siteCode].dailyValues).sort();
+        const sortedDailyValues: DateValueMap = {};
+        sortedDates.forEach(date => {
+          sortedDailyValues[date] = dailyMetrics[siteCode].dailyValues[date];
+        });
+        dailyMetrics[siteCode].dailyValues = sortedDailyValues;
       });
 
       return dailyMetrics;
@@ -150,6 +158,7 @@ function getDailyRiverMetrics(siteCode: string, period: string) {
       throw error;
     });
 }
+
 
 function getInstantaneousRiverMetrics(siteCode: string, period: string) {
   return fetch(`${USGS_API_BASE}iv/?site=${siteCode}&period=${period}&format=json`)
@@ -205,6 +214,12 @@ function getInstantaneousRiverMetrics(siteCode: string, period: string) {
             };
           }
         });
+        const sortedDateTimes = Object.keys(instantaneousMetrics[siteCode].instantaneousValues).sort();
+        const sortedInstantaneousValues: InstantaneousValueMap = {};
+        sortedDateTimes.forEach(dateTime => {
+          sortedInstantaneousValues[dateTime] = instantaneousMetrics[siteCode].instantaneousValues[dateTime];
+        });
+        instantaneousMetrics[siteCode].instantaneousValues = sortedInstantaneousValues;
       });
 
       return instantaneousMetrics;
